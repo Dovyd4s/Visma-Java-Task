@@ -66,12 +66,8 @@ public class MeetingRepository {
     public Meeting updateMeeting(Meeting meeting) {
         StorageFile storageFile = readMeetingsFromFile(FILENAME);
 
-        System.out.println("storage: "+storageFile);
-
         List<Meeting> meetings = storageFile.getMeetings();
         Optional<Meeting> old = meetings.stream().filter(s->s.getId()==meeting.getId()).findFirst();
-
-        System.out.println("old: " + old);
 
         if(old.isPresent()){
             meetings.set(meetings.indexOf(old.get()), meeting);

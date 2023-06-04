@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Service
 public class MeetingService {
@@ -22,7 +21,7 @@ public class MeetingService {
         this.meetingRepository = meetingRepository;
     }
 
-    public List<Meeting> getMeetings(String description, String responsiblePersonName, String responsiblePersonLastName, String category, String type, LocalDate fromDate, LocalDate toDate, Integer minAttendees, Integer maxAttendees) {
+    public List<Meeting> getFilteredMeetings(String description, String responsiblePersonName, String responsiblePersonLastName, String category, String type, LocalDate fromDate, LocalDate toDate, Integer minAttendees, Integer maxAttendees) {
         List<Meeting> meetings = meetingRepository.getAllMeetings();
 
         if(description != null){
@@ -148,7 +147,6 @@ public class MeetingService {
         }
         return false;
     }
-
 
     public HttpStatus deleteMeeting(long id, Person person) {
         Meeting meeting = meetingRepository.finById(id);

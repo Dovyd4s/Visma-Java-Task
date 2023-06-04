@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -38,7 +37,7 @@ public class MeetingController {
             @RequestParam(required = false, name = "numberOfAttendeesMin") Integer minAttendees,
             @RequestParam(required = false, name = "numberOfAttendeesMax") Integer maxAttendees) {
 
-        return meetingService.getMeetings(description, responsiblePersonName, responsiblePersonLastName, category, type, fromDate, toDate, minAttendees, maxAttendees);
+        return meetingService.getFilteredMeetings(description, responsiblePersonName, responsiblePersonLastName, category, type, fromDate, toDate, minAttendees, maxAttendees);
     }
 
     @GetMapping(path = "/{id}")
