@@ -21,7 +21,7 @@ public class MeetingRepository {
     public List<Meeting> getAllMeetings() {
         return readMeetingsFromFile(FILENAME).getMeetings();
     }
-    public Meeting finById(Long id) {
+    public Meeting findById(Long id) {
         return readMeetingsFromFile(FILENAME).getMeetings().stream()
                 .filter(s->s.getId()==id).findFirst().orElse(null);
     }

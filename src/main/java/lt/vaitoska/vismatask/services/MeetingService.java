@@ -56,11 +56,14 @@ public class MeetingService {
     }
 
     public Meeting getMeetingById(long id) {
-        return meetingRepository.finById(id);
+        return meetingRepository.findById(id);
     }
     public HttpStatus deletePerson(long meetingId, Person person) {
+        if(person == null){
+            return HttpStatus.BAD_REQUEST;
+        }
         boolean found = false;
-        Meeting meeting = meetingRepository.finById(meetingId);
+        Meeting meeting = meetingRepository.findById(meetingId);
         if(meeting == null){
             return HttpStatus.NOT_FOUND;
         }
@@ -149,7 +152,7 @@ public class MeetingService {
     }
 
     public HttpStatus deleteMeeting(long id, Person person) {
-        Meeting meeting = meetingRepository.finById(id);
+        Meeting meeting = meetingRepository.findById(id);
         if(meeting == null){
             return HttpStatus.NOT_FOUND;
         }
